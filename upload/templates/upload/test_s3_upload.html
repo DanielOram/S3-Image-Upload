@@ -1,0 +1,6 @@
+<h1>Test S3 file upload</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload photo to S3 Bucket</button>
+</form>
