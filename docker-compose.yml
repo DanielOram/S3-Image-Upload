@@ -10,3 +10,16 @@ services:
       - 8000:8000
     env_file:
       - ./.env
+    depends_on: 
+      - db
+
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=s3_upload
+      - POSTGRES_PASSWORD=s3_upload
+      - POSTGRES_DB=s3_upload_dev
+volumes: 
+  postgres_data:
