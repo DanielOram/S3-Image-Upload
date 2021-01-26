@@ -1,11 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .forms import TestS3UploadForm
+from .models import TestS3Upload
 
 # Create your views here.
-
-from django.shortcuts import render
-from django.http import HttpResponse
-
-from .forms import TestS3UploadForm
 
 def test_s3_upload(request):
 
@@ -13,7 +11,6 @@ def test_s3_upload(request):
     if not request.session.session_key:
         request.session.create()
 
-    # not quite sure how to use this to set upload destination
     session_key = request.session.session_key
 
     if request.method == 'POST':
@@ -22,9 +19,13 @@ def test_s3_upload(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponse("upload successful!")
+
+            filename = "{}/{}".format(session_key, form.cleaned_data['file'].name)
+            s3_upload_path = TestS3Upload.objects.get(file=filename).file.url
+
+            return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
     else:
-        form = TestS3UploadForm()
+        form = TestS3UploadForm(initial={'session_key': session_key})
 
     return render(
         request,

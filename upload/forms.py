@@ -5,4 +5,5 @@ class TestS3UploadForm(forms.ModelForm):
 
     class Meta:
         model = TestS3Upload
-        fields = ['file']
+        fields = ['file', 'session_key']
+        widgets = {'session_key': forms.HiddenInput()}
