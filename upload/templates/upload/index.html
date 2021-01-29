@@ -1,0 +1,18 @@
+
+
+{% extends "upload/layout.html" %}
+{% block title %}
+S3 Image Uploader
+{% endblock %}
+{% block fab %}
+<a href="{% url 'upload' %}" class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+    <i class="material-icons">add</i>
+</a>
+{% endblock %}
+{% block content %}
+
+
+<h1>Index page</h1>
+<p>Uploaded images will be displayed here</p>
+
+{% endblock %}
