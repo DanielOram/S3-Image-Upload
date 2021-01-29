@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'upload',
     'storages',
-    'easy_thumbnails'
+    'easy_thumbnails',
+    'widget_tweaks',
+    'material'
 ]
 
 MIDDLEWARE = [
