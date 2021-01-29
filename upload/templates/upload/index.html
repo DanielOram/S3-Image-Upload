@@ -12,7 +12,26 @@ S3 Image Uploader
 {% block content %}
 
 
-<h1>Index page</h1>
+<h1>Your Images</h1>
 <p>Uploaded images will be displayed here</p>
+
+<!-- Collection -->
+<ul class="collection">
+    {% for image in images %}
+        <li class="collection-item avatar">
+            <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
+            <i class="material-icons circle">insert_photo</i>
+            <span class="title">
+                File Name: {{ image.file.name}}
+            </span>
+            <p>
+                Upload Date: {{ image.uploaded_at }}
+            </p>
+            <a href="{% url 'delete' image.file.name %}" class="secondary-content"><i class="material-icons">delete</i></a>
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- End of Collection -->
 
 {% endblock %}
