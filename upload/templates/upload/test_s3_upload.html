@@ -1,6 +1,24 @@
-<h1>Test S3 file upload</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload photo to S3 Bucket</button>
-</form>
+
+
+{% extends "uploader/layout.html" %}
+{% block title %}
+S3 Image Uploader
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>Test S3 file upload</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload photo to S3 Bucket</button>
+        </form>
+    </div>
+
+</div>
+
+
+
+<br>
+
+{% endblock %}
