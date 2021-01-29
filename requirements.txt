@@ -7,3 +7,5 @@ django-storages==1.11.1
 python-dotenv==0.15.0
 
 psycopg2-binary==2.8.5
+
+easy-thumbnails==2.7.1

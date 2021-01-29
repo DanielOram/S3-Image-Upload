@@ -11,6 +11,7 @@ S3 Image Uploader
 {% endblock %}
 {% block content %}
 
+{% load thumbnail %}
 
 <h1>Your Images</h1>
 <p>Uploaded images will be displayed here</p>
@@ -19,8 +20,9 @@ S3 Image Uploader
 <ul class="collection">
     {% for image in images %}
         <li class="collection-item avatar">
+            <img src="{% thumbnail image.file 50x50 crop %}" alt="" class="circle" />
             <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
-            <i class="material-icons circle">insert_photo</i>
+            <!-- <i class="material-icons circle">insert_photo</i> -->
             <span class="title">
                 File Name: {{ image.file.name}}
             </span>
