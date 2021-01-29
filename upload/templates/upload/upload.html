@@ -1,6 +1,8 @@
 
 
 {% extends "upload/layout.html" %}
+{% load widget_tweaks %}
+{% load material_form %}
 {% block title %}
 S3 Image Uploader
 {% endblock %}
@@ -12,12 +14,17 @@ S3 Image Uploader
     <div class="col">
         <h1>File Upload</h1>
         <p>Choose a file to upload to S3</p>
+
+
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Upload photo to S3 Bucket</button>
+            {% form form=form %}{% endform %}
+            <button type="submit" name="_submit" class="btn">Upload Image to S3</button>
         </form>
+
+
     </div>
 
 </div>
+
 {% endblock %}
