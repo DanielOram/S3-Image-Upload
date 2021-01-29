@@ -5,7 +5,7 @@ from .models import TestS3Upload
 
 # Create your views here.
 
-def test_s3_upload(request):
+def upload(request):
 
     # create session if it doesn't already exist
     if not request.session.session_key:
@@ -29,7 +29,7 @@ def test_s3_upload(request):
 
     return render(
         request,
-        'upload/test_s3_upload.html',
+        'upload/upload.html',
         {
             'form': form
         }

@@ -4,5 +4,5 @@ from upload import views
 
 
 urlpatterns = [
-    path("", views.test_s3_upload)
+    path("", views.upload)
 ]
