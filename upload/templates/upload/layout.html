@@ -4,14 +4,34 @@
     <meta charset="utf-8"/>
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
-    <!-- Compiled and minified CSS -->
+    <!-- Materializecss -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Compiled and minified JavaScript -->
+
+    <!-- Compiled and minified JavaScript for Materializecss -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
+    <!-- Navbar -->
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">S3 Image Upload</a>
+            </div>
+            <div class="nav-content">
+                <!-- Fixed Action Button -->
+                {% block fab %}
+                {% endblock %}
+                <!-- End of Fixed Action Button -->
+            </div>
+        </nav>
+    </div>
+    
+    <!-- End of Navbar -->
+    
+    <!-- Container -->
     <div class="container">
         <!-- Page Content goes here -->
         {% block content %}
@@ -20,5 +40,6 @@
             <p>© 2021 Daniel Oram</p>
         </footer>
     </div>
+    <!-- End of Container -->
 </body>
 </html>
