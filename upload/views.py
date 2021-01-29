@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import TestS3UploadForm
 from .models import TestS3Upload
@@ -23,7 +23,8 @@ def upload(request):
             filename = "{}/{}".format(session_key, form.cleaned_data['file'].name)
             s3_upload_path = TestS3Upload.objects.get(file=filename).file.url
 
-            return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
+            return redirect(index)
+            # return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
     else:
         form = TestS3UploadForm(initial={'session_key': session_key})
 
@@ -36,8 +37,20 @@ def upload(request):
     )
 
 def index(request):
+    images = TestS3Upload.objects.all()
+    print(len(images))
     return render(
         request,
         'upload/index.html',
-        {}
+        {
+            'images': images
+        }
         )
+
+def delete(request, file):
+    try:
+        file = TestS3Upload.objects.get(file=file)
+        file.delete()
+    except TestS3Upload.DoesNotExist:
+        pass
+    return redirect(index)
