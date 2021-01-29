@@ -24,7 +24,7 @@ def upload(request):
 
             filename = "{}/{}".format(session_key, form.cleaned_data['file'].name)
             s3_upload_path = TestS3Upload.objects.get(file=filename).file.url
-
+            messages.success(request, "Successfully uploaded file!")
             return redirect(index)
             # return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
     else:
