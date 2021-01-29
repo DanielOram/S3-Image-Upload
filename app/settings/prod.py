@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env_file = os.path.join(BASE_DIR, '.env')
+env_file = os.path.join(BASE_DIR, '.env.prod')
 if os.path.exists(env_file):
     load_dotenv()
 
@@ -32,9 +32,7 @@ if os.path.exists(env_file):
 SECRET_KEY = 'o$_2!kn17=1$2y_oz9h$o32@bbz9otqp1b)x@ml1#wi@nyso3x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
