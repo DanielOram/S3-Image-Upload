@@ -36,4 +36,17 @@ S3 Image Uploader
 
 <!-- End of Collection -->
 
+<!-- Messages -->
+{% if messages %}
+<ul>
+   {% for message in messages %}
+        <script>
+            var message = "{{ message }}";
+            M.toast({html: message});
+        </script>
+   {% endfor %}
+</ul>
+{% endif %}
+<!-- End of Messages -->
+
 {% endblock %}

@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .forms import TestS3UploadForm
 from .models import TestS3Upload
 
+from django.contrib import messages
+
 # Create your views here.
 
 def upload(request):
@@ -51,6 +53,7 @@ def delete(request, file):
     try:
         file = TestS3Upload.objects.get(file=file)
         file.delete()
+        messages.success(request, 'File successfully deleted.')
     except TestS3Upload.DoesNotExist:
         pass
     return redirect(index)
