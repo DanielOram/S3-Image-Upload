@@ -34,3 +34,10 @@ def upload(request):
             'form': form
         }
     )
+
+def index(request):
+    return render(
+        request,
+        'upload/index.html',
+        {}
+        )
