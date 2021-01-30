@@ -21,66 +21,71 @@
     <!-- Navbar -->
     <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper cyan">
-                <a href="/" class="brand-logo center">S3 Image Upload</a>
-                <ul id="nav-mobile" class="hide-on-med-and-down">
-                    <li><a href="#!">About</a></li>
-                  </ul>
+            <div class="nav-wrapper">
+              <a href="#!" class="brand-logo center">Image Uploader</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <!-- fab -->
+              <a href="{% url 'upload' %}" class="btn-floating btn-large halfway-fab waves-effect waves-light pink accent-3">
+                <i class="material-icons">add</i>
+            </a>
+            <!-- end of fab -->
+              <ul class="hide-on-med-and-down">
+                <li>
+                    <a class="waves-effect" href="list-view">
+                        <i class="material-icons">list</i>
+                        {% if view == 'list' %}
+                            <!-- <i class="material-icons right">star</i> -->
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect" href="card-view">
+                        <i class="material-icons">dashboard</i>
+                        {% if view == 'card' %}
+                            <!-- <i class="material-icons right">star</i> -->
+                        {% endif %}
+                    </a>
+                </li>
+                <li><div class="divider"></div></li>
+              </ul>
             </div>
-            <div class="nav-content">
-                <!-- Fixed Action Button -->
-                {% block fab %}
-                {% endblock %}
-                <!-- End of Fixed Action Button -->
-            </div>
-        </nav>
+          </nav>
     </div>
-
-
-    
     <!-- End of Navbar -->
-
-    <!-- SideNav -->
-
-    <!-- End of SideNav -->
-    {% load thumbnail %}
     
-    <!-- <div class="container"> -->
+    
+
+    
+
+
+
+    <div class="container">
+        {% if images %}
+        <div class="row">
+            <div class="col s1">
+
+            </div>
+            <div class="col s10">
+                <h1 class="center">
+                    {% block header %}
+
+                    {% endblock %}
+                </h1>
+                <p class="center">Uploaded images will be displayed here</p>
+            </div>
+            <div class="col s1">
+
+            </div>
+
+        </div>
         
-        <div class="container">
-            {% if images %}
-            <h1>Your Images</h1>
-            <p>Uploaded images will be displayed here</p>
-            
-            <!-- Collection -->
-            
-            <ul class="collection">
-                {% for image in images %}
-                
-                    <li class="collection-item avatar">
-                        
-                        <img src="{% thumbnail image.file 50x50 crop %}" alt="" class="circle"/>
-                        <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
-                        <!-- <i class="material-icons circle">insert_photo</i> -->
-                        <span class="title">
-                            File Name: {{ image.filename }}
-                        </span>
-                        <p>
-                            Upload Date: {{ image.uploaded_at }}
-                        </p>
-                        <a href="{% url 'delete' image.file.name %}" class="secondary-content"><i class="material-icons">delete</i></a>
-                        
-                    </li>
-                {% endfor %}
-            </ul>
-            <!-- End of Collection -->
-            {% endif %}
-        </div>
-        <div class="container">
- 
-            {% block content %}
-            {% endblock %}
-        </div>
+
+        {% block content %}
+        {% endblock %}
+        
+        {% endif %}
+    </div>
+    
     <!-- </div> -->
     
 
@@ -106,6 +111,8 @@
     {% endfor %}
     </ul>
     {% endif %}
+
+    <!-- End of Messages -->
 
     <!-- Javascript -->
     <script>

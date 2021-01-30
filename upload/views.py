@@ -38,14 +38,27 @@ def upload(request):
         }
     )
 
-def index(request):
+def index(request, view="list-view"):
+
     images = TestS3Upload.objects.all()
-    print(len(images))
+
+
+    if view =='card-view':
+        return render(
+        request,
+        'upload/card_view_index.html',
+        {
+            'images': images,
+            'view': 'card'
+        }
+        )
+
     return render(
         request,
-        'upload/index.html',
+        'upload/list_view_index.html',
         {
-            'images': images
+            'images': images,
+            'view': 'list'
         }
         )
 

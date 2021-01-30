@@ -1,0 +1,48 @@
+{% extends "upload/layout.html" %}
+{% block title %}
+S3 Image Uploader
+{% endblock %}
+{% block fab %}
+<a href="{% url 'upload' %}" class="btn-floating btn-large halfway-fab waves-effect waves-light pink accent-3">
+    <i class="material-icons">add</i>
+</a>
+{% endblock %}
+
+{% block header %}
+List View
+{% endblock %}
+
+
+{% block content %}
+{% load thumbnail %}
+
+<!-- Collection -->
+            
+<ul class="collection">
+    {% for image in images %}
+    
+        <li class="collection-item avatar">
+            
+            <img src="{% thumbnail image.file 50x50 crop %}" alt="" class="circle"/>
+            <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
+            <!-- <i class="material-icons circle">insert_photo</i> -->
+            <span class="title">
+                File Name: {{ image.filename }}
+            </span>
+            <p>
+                Upload Date: {{ image.uploaded_at }}
+            </p>
+            <a href="{% url 'delete' image.file.name %}" class="secondary-content"><i class="material-icons">delete</i></a>
+            
+        </li>
+    {% endfor %}
+</ul>
+<!-- End of Collection -->
+
+{% endblock %}
+
+
+    
+    <!-- <div class="container"> -->
+        
+        
