@@ -15,6 +15,9 @@ class TestS3Upload(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
     file = models.FileField(upload_to=upload_to_session_key_dir)
 
+    def filename(self):
+        return os.path.basename(self.file.name)
+
 
 # delete TestS3Upload file from local media 
 def _delete_file(path):

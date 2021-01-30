@@ -13,6 +13,8 @@
 
     <!-- Compiled and minified JavaScript for Materializecss -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'upload/site.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -30,18 +32,82 @@
             </div>
         </nav>
     </div>
-    
     <!-- End of Navbar -->
+
+    <!-- SideNav -->
+
+    <!-- End of SideNav -->
+    {% load thumbnail %}
+    
+    <!-- <div class="container"> -->
+        
+        <div class="container">
+            {% if images %}
+            <h1>Your Images</h1>
+            <p>Uploaded images will be displayed here</p>
+            
+            <!-- Collection -->
+            
+            <ul class="collection">
+                {% for image in images %}
+                
+                    <li class="collection-item avatar">
+                        
+                        <img src="{% thumbnail image.file 50x50 crop %}" alt="" class="circle"/>
+                        <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
+                        <!-- <i class="material-icons circle">insert_photo</i> -->
+                        <span class="title">
+                            File Name: {{ image.filename }}
+                        </span>
+                        <p>
+                            Upload Date: {{ image.uploaded_at }}
+                        </p>
+                        <a href="{% url 'delete' image.file.name %}" class="secondary-content"><i class="material-icons">delete</i></a>
+                        
+                    </li>
+                {% endfor %}
+            </ul>
+            <!-- End of Collection -->
+            {% endif %}
+        </div>
+        <div class="container">
+ 
+            {% block content %}
+            {% endblock %}
+        </div>
+    <!-- </div> -->
+    
+
     
     <!-- Container -->
     <div class="container">
         <!-- Page Content goes here -->
-        {% block content %}
-        {% endblock %}
+        
         <footer>
             <p>© 2021 Daniel Oram</p>
         </footer>
     </div>
     <!-- End of Container -->
+
+    <!-- Messages -->
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+            <script>
+                var message = "{{ message }}";
+                M.toast({html: message});
+            </script>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Javascript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, {});
+    });
+    </script>
+    <!-- End of Javascript -->
 </body>
 </html>

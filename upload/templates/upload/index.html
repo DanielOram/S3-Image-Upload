@@ -9,44 +9,59 @@ S3 Image Uploader
     <i class="material-icons">add</i>
 </a>
 {% endblock %}
+
+
 {% block content %}
-
-{% load thumbnail %}
-
-<h1>Your Images</h1>
-<p>Uploaded images will be displayed here</p>
-
-<!-- Collection -->
-<ul class="collection">
+<div class="divider"></div>
+<div class="row">
+    <ul class="collection">
+        <!-- Images in Cards -->
     {% for image in images %}
-        <li class="collection-item avatar">
-            <img src="{% thumbnail image.file 50x50 crop %}" alt="" class="circle" />
-            <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
-            <!-- <i class="material-icons circle">insert_photo</i> -->
-            <span class="title">
-                File Name: {{ image.file.name}}
-            </span>
-            <p>
-                Upload Date: {{ image.uploaded_at }}
-            </p>
-            <a href="{% url 'delete' image.file.name %}" class="secondary-content"><i class="material-icons">delete</i></a>
-        </li>
+
+    <div class="col s12 m4 l3">
+        <div class="card">
+        <div class="card-image">
+            <img class="materialboxed" data-caption="Name: {{ image.filename }} - Uploaded: {{ image.uploaded_at }}" src="{{ image.file.url }}">
+            <span class="card-title">{{ image.filename }}</span>
+            <!-- <a href="{% url 'delete' image.file.name %}" class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a> -->
+        </div>
+        </div>
+        
+    </div>
     {% endfor %}
-</ul>
 
-<!-- End of Collection -->
 
-<!-- Messages -->
-{% if messages %}
-<ul>
-   {% for message in messages %}
-        <script>
-            var message = "{{ message }}";
-            M.toast({html: message});
-        </script>
-   {% endfor %}
-</ul>
-{% endif %}
+    <!-- End of Images in Cards -->
+    </ul>
+    
+
+    <!-- Add Image Card -->
+
+    <!-- End of Add Image Card -->
+</div>
+
+
+
+
+
+
+
+
+
 <!-- End of Messages -->
+
+<!-- JS -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.materialboxed');
+        var instances = M.Materialbox.init(elems, {});
+    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     var elems = document.querySelectorAll('.collapsible');
+    //     var instances = M.Collapsible.init(elems, {});
+    // });
+</script>
+
+<!-- End of JS -->
 
 {% endblock %}
