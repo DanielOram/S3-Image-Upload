@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <title>Image Uploader</title>
     {% load static %}
+    {% load material_form %}
     <!-- Materializecss -->
     {% include 'material/includes/material_css.html' %}
     {% include 'material/includes/material_js.html' %}
@@ -25,7 +26,7 @@
               <a href="#!" class="brand-logo center">Image Uploader</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <!-- fab -->
-              <a href="{% url 'upload' %}" class="btn-floating btn-large halfway-fab waves-effect waves-light pink accent-3">
+              <a href="#upload" class="btn-floating btn-large halfway-fab waves-effect waves-light pink accent-3 modal-trigger">
                 <i class="material-icons">add</i>
             </a>
             <!-- end of fab -->
@@ -41,9 +42,6 @@
                 <li>
                     <a class="waves-effect" href="card-view">
                         <i class="material-icons">dashboard</i>
-                        {% if view == 'card' %}
-                            <!-- <i class="material-icons right">star</i> -->
-                        {% endif %}
                     </a>
                 </li>
                 <li><div class="divider"></div></li>
@@ -51,46 +49,94 @@
             </div>
           </nav>
     </div>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="list-view"><i class="material-icons">list</i>List View</a></li>
+        <li><a href="card-view"><i class="material-icons">dashboard</i>Card View</a></li>
+      </ul>
     <!-- End of Navbar -->
     
+    <!-- Upload Model -->
+  <div id="upload" class="modal">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="modal-content">
+            <h4>Select an Image to Upload</h4>
+            
+              {% csrf_token %}
+              {% form form=form %}{% endform %}
+              <!-- <button type="submit" name="_submit" class="btn pink accent-3">Upload Image</button> -->
+              <!-- <a class="btn btn-block right cyan lighten-1 modal-close">Cancel</a> -->
+            </div>
+          <div class="modal-footer">
+              <!-- <a class="btn btn-block right cyan lighten-1 modal-close">Cancel</a> -->
+              <button type="submit" name="_submit" class="btn right pink accent-3">Upload Image</button>
+            <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+          </div>
+    </form>
     
+  </div>
+  <!-- End of Upload Modal -->
 
     
 
 
 
     <div class="container">
-        {% if images %}
         <div class="row">
             <div class="col s1">
 
             </div>
-            <div class="col s10">
-                <h1 class="center">
-                    {% block page-header %}
+            <div class="col s10 card">
+                
+                    <div class="card-content">
+                        <h1 class="center">
+                            {% block page-header %}
+        
+                            {% endblock %}
+                        </h1>
+                        <p class="center">Uploaded images will be displayed here.</p>
+                        {% if not images %}
+                            <p class="center light-text">
+                                It appears you have no images uploaded. 
+                            </p>
+                            <div class="row"> 
+                                <div class="col s1 m2 l2 xl4"></div>
+                                <div class="col s10 m8 l8 xl4">
+                                    <a href="#upload" class="btn btn-block pink accent-3 modal-trigger">Click to Add an image</a>
+                                </div>
+                                <div class="col s1 m2 l2 xl4"></div>
+                            </div>
+                            
+                    </div>
+                    
+                {% endif %}
 
-                    {% endblock %}
-                </h1>
-                <p class="center">Uploaded images will be displayed here</p>
+                
             </div>
             <div class="col s1">
 
             </div>
+            
 
         </div>
+
         
 
         
-        
-        {% endif %}
-
-        {% block content %}
-        {% endblock %}
     </div>
     
     <!-- </div> -->
-    
+    <div class="row">
+        <div class="col s1">
 
+        </div>
+        <div class="col s10">
+            {% block content %}
+            {% endblock %} 
+        </div>
+         
+    </div>
+    
     
     <!-- Container -->
     <div class="container">
@@ -119,9 +165,13 @@
     <!-- Javascript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems, {});
-    });
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {});
+        });
     </script>
     <!-- End of Javascript -->
 </body>
