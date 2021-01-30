@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import TestS3UploadForm
-from .models import TestS3Upload
+from .forms import UploadForm
+from .models import Upload
 
 from django.contrib import messages
 
@@ -17,18 +17,18 @@ def upload(request):
 
     if request.method == 'POST':
 
-        form = TestS3UploadForm(request.POST, request.FILES)
+        form = UploadForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
 
             filename = "{}/{}".format(session_key, form.cleaned_data['file'].name)
-            s3_upload_path = TestS3Upload.objects.get(file=filename).file.url
+            s3_upload_path = Upload.objects.get(file=filename).file.url
             messages.success(request, "Successfully uploaded file!")
             return redirect(index)
             # return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
     else:
-        form = TestS3UploadForm(initial={'session_key': session_key})
+        form = UploadForm(initial={'session_key': session_key})
 
     return render(
         request,
@@ -46,20 +46,20 @@ def index(request, view="list-view"):
 
     if request.method == 'POST':
 
-        form = TestS3UploadForm(request.POST, request.FILES)
+        form = UploadForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
 
             filename = "{}/{}".format(session_key, form.cleaned_data['file'].name)
-            s3_upload_path = TestS3Upload.objects.get(file=filename).file.url
+            s3_upload_path = Upload.objects.get(file=filename).file.url
             messages.success(request, "Successfully uploaded file!")
             return redirect(index, view=view)
             # return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
     else:
-        form = TestS3UploadForm(initial={'session_key': session_key})
+        form = UploadForm(initial={'session_key': session_key})
 
-    images = TestS3Upload.objects.all()
+    images = Upload.objects.all()
 
 
     if view =='card-view':
@@ -79,11 +79,11 @@ def index(request, view="list-view"):
 
 def delete(request, file):
     try:
-        file = TestS3Upload.objects.get(file=file)
+        file = Upload.objects.get(file=file)
         # file.delete_thumbnails()
         file.delete()
         messages.success(request, 'File successfully deleted.')
-    except TestS3Upload.DoesNotExist:
+    except Upload.DoesNotExist:
         pass
     return redirect(index)
 

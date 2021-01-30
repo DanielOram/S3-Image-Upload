@@ -1,5 +1,5 @@
 from django.db import models
-from app.storage_backends import TestS3MediaStorage
+from app.storage_backends import S3MediaStorage
 import os
 
 from django.dispatch import receiver
@@ -13,7 +13,7 @@ from easy_thumbnails.files import get_thumbnailer
 def upload_to_session_key_dir(instance, filename):
     return os.path.join(instance.session_key, filename)
 
-class TestS3Upload(models.Model):
+class Upload(models.Model):
     session_key = models.CharField(max_length=50, null=False, blank=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     file = ThumbnailerImageField(upload_to=upload_to_session_key_dir, blank=True)
@@ -34,7 +34,7 @@ def _delete_thumbnails(file):
     thumbnailer = get_thumbnailer(file)
     thumbnailer.delete_thumbnails()
 
-@receiver(models.signals.post_delete, sender=TestS3Upload)
+@receiver(models.signals.post_delete, sender=Upload)
 def delete_file(sender, instance, *args, **kwargs):
     """ Deletes file on `post_delete` """
     if instance.file:

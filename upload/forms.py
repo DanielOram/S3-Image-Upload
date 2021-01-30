@@ -1,10 +1,10 @@
 from django import forms
-from .models import TestS3Upload
+from .models import Upload
 
-class TestS3UploadForm(forms.ModelForm):
+class UploadForm(forms.ModelForm):
 
     class Meta:
-        model = TestS3Upload
+        model = Upload
         fields = [
             'file', 
             'session_key'
