@@ -15,7 +15,7 @@ import os
 
 from dotenv import load_dotenv
 
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,9 +146,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'uploader/static'),
 ]
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
-STATICFILES_STORAGE = 'app.storage_backends.TestS3MediaStorage'
+STATICFILES_STORAGE = 'app.storage_backends.S3MediaStorage'
 
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 MEDIA_ROOT = MEDIA_URL
-DEFAULT_FILE_STORAGE = 'app.storage_backends.TestS3MediaStorage'
+DEFAULT_FILE_STORAGE = 'app.storage_backends.S3MediaStorage'
