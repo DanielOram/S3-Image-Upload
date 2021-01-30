@@ -4,27 +4,36 @@
 {% load widget_tweaks %}
 {% load material_form %}
 {% block title %}
-S3 Image Uploader
-{% endblock %}
-{% block fab %}
-
+Image Uploader
 {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col">
-        <h1>File Upload</h1>
-        <p>Choose a file to upload to S3</p>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Card Title</span>
+                    <p>Choose a file to upload to S3</p>
+            
+            
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% form form=form %}{% endform %}
+                        <button type="submit" name="_submit" class="btn pink accent-3">Upload Image</button>
+                        <a href="" class="btn btn-block right cyan lighten-1">Cancel</a>
+                    </form>
 
-
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% form form=form %}{% endform %}
-            <button type="submit" name="_submit" class="btn">Upload Image</button>
-        </form>
-
-
+                    
+                </div>
+                
+            </div>
+            
+    
+    
+        </div>
+    
     </div>
-
 </div>
+
 
 {% endblock %}

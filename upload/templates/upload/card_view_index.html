@@ -1,11 +1,9 @@
 
 
 {% extends "upload/layout.html" %}
-{% block title %}
-S3 Image Uploader
-{% endblock %}
 
-{% block header %}
+
+{% block page-header %}
 Card View
 {% endblock %}
 
@@ -34,7 +32,7 @@ Card View
             <span class="card-title grey-text text-darken-4">{{ image.filename }}<i class="material-icons right">close</i></span>
             <p>Do you want to delete this image?</p>
             <div class="row">
-                <a class="col s12 btn waves-effect waves-light btn-block yellow darken-4">DELETE</a>
+                <a href="{% url 'delete' image.file.name %}" class="col s12 btn waves-effect waves-light btn-block yellow darken-4">DELETE</a>
                 </div>
             </div>
         </div>

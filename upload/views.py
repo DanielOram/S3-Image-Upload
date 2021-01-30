@@ -9,9 +9,7 @@ from django.contrib import messages
 
 def upload(request):
 
-    # create session if it doesn't already exist
-    if not request.session.session_key:
-        request.session.create()
+    check_session(request)
 
     session_key = request.session.session_key
 
@@ -39,6 +37,8 @@ def upload(request):
     )
 
 def index(request, view="list-view"):
+
+    check_session(request)
 
     images = TestS3Upload.objects.all()
 
@@ -70,3 +70,9 @@ def delete(request, file):
     except TestS3Upload.DoesNotExist:
         pass
     return redirect(index)
+
+
+def check_session(request):
+    # create session if it doesn't already exist
+    if not request.session.session_key:
+        request.session.create()

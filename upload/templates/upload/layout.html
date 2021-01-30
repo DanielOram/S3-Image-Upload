@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>{% block title %}{% endblock %}</title>
+    <title>Image Uploader</title>
     {% load static %}
     <!-- Materializecss -->
     {% include 'material/includes/material_css.html' %}
@@ -21,7 +21,7 @@
     <!-- Navbar -->
     <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper cyan lighten-1">
               <a href="#!" class="brand-logo center">Image Uploader</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <!-- fab -->
@@ -67,7 +67,7 @@
             </div>
             <div class="col s10">
                 <h1 class="center">
-                    {% block header %}
+                    {% block page-header %}
 
                     {% endblock %}
                 </h1>
@@ -80,10 +80,12 @@
         </div>
         
 
-        {% block content %}
-        {% endblock %}
+        
         
         {% endif %}
+
+        {% block content %}
+        {% endblock %}
     </div>
     
     <!-- </div> -->
