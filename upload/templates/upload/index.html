@@ -5,26 +5,35 @@
 S3 Image Uploader
 {% endblock %}
 {% block fab %}
-<a href="{% url 'upload' %}" class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+<a href="{% url 'upload' %}" class="btn-floating btn-large halfway-fab waves-effect waves-light pink accent-3">
     <i class="material-icons">add</i>
 </a>
 {% endblock %}
 
 
 {% block content %}
-<div class="divider"></div>
-<div class="row">
-    <ul class="collection">
-        <!-- Images in Cards -->
+<div class="row card">
+    <!-- Images in Cards -->
     {% for image in images %}
 
-    <div class="col s12 m4 l3">
-        <div class="card">
+    <div class="col s12 m6 l4 xl3">
+        <div class="card small pink lighten-2">
         <div class="card-image">
             <img class="materialboxed" data-caption="Name: {{ image.filename }} - Uploaded: {{ image.uploaded_at }}" src="{{ image.file.url }}">
             <span class="card-title">{{ image.filename }}</span>
             <!-- <a href="{% url 'delete' image.file.name %}" class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a> -->
         </div>
+        <!-- <div class="card-content white-text">
+            <p>
+                {{ image.uploaded_at }}
+            </p>
+          </div> -->
+        <div class="card-content">
+            <div class="row">
+                    <a class="col s12 btn waves-effect waves-light btn-block yellow darken-4">DELETE</a>
+            </div>
+            
+          </div>
         </div>
         
     </div>
@@ -32,7 +41,6 @@ S3 Image Uploader
 
 
     <!-- End of Images in Cards -->
-    </ul>
     
 
     <!-- Add Image Card -->
