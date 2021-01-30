@@ -12,44 +12,42 @@ S3 Image Uploader
 
 
 {% block content %}
-<div class="row card">
-    <!-- Images in Cards -->
-    {% for image in images %}
 
-    <div class="col s12 m6 l4 xl3">
-        <div class="card small pink lighten-2">
-        <div class="card-image">
-            <img class="materialboxed" data-caption="Name: {{ image.filename }} - Uploaded: {{ image.uploaded_at }}" src="{{ image.file.url }}">
-            <span class="card-title">{{ image.filename }}</span>
-            <!-- <a href="{% url 'delete' image.file.name %}" class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a> -->
-        </div>
-        <!-- <div class="card-content white-text">
-            <p>
-                {{ image.uploaded_at }}
-            </p>
-          </div> -->
-        <div class="card-content">
-            <div class="row">
-                    <a class="col s12 btn waves-effect waves-light btn-block yellow darken-4">DELETE</a>
-            </div>
-            
-          </div>
-        </div>
-        
+
+
+<!-- Reveal Image Card -->
+
+{% for image in images %}
+<div class="row">
+    <div class="col m2 l3">
+
     </div>
-    {% endfor %}
+    <div class="col s12 m8 l6">
+        <div class="card">
+            
+            <div class="card-image">
+                <img class="materialboxed" data-caption="Name: {{ image.filename }} - Uploaded: {{ image.uploaded_at }}" src="{{ image.file.url }}">
+            </div>
+            <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Delete Image<i class="material-icons right">delete</i></span>
+            </div>
+            <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{ image.filename }}<i class="material-icons right">close</i></span>
+            <p>Are you sure you want to delete this image?</p>
+            <div class="row">
+                <a class="col s12 btn waves-effect waves-light btn-block yellow darken-4">DELETE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col m2 l3">
 
-
-    <!-- End of Images in Cards -->
-    
-
-    <!-- Add Image Card -->
-
-    <!-- End of Add Image Card -->
+    </div>
 </div>
 
+{% endfor %}
 
-
+<!-- End of Reveal Image Card -->
 
 
 
