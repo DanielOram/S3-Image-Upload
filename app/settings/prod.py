@@ -15,8 +15,6 @@ import os
 
 from dotenv import load_dotenv
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -29,6 +27,8 @@ if os.path.exists(env_file):
 
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = str(os.getenv('DJANGO_SECRET_KEY'))
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
