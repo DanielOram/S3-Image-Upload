@@ -1,14 +1,15 @@
 
 boto3==1.16.59
+django-storages==1.11.1
+
+easy-thumbnails==2.7.1
+
+django-material==1.7.4
 
 Django==3.1.5
-django-storages==1.11.1
+
 
 python-dotenv==0.15.0
 
 psycopg2-binary==2.8.5
 
-easy-thumbnails==2.7.1
-django-widget-tweaks==1.4.8
-
-django-material==1.7.4
