@@ -18,22 +18,17 @@ from dotenv import load_dotenv
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env_file = os.path.join(BASE_DIR, '.env.prod')
 if os.path.exists(env_file):
-    load_dotenv()
-
+    load_dotenv(env_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o$_2!kn17=1$2y_oz9h$o32@bbz9otqp1b)x@ml1#wi@nyso3x'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-
-
+SECRET_KEY = str(os.getenv('DJANGO_SECRET_KEY'))
 
 # Application definition
 
