@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'upload',
     'storages',
     'easy_thumbnails',
-    'widget_tweaks',
     'material'
 ]
 
