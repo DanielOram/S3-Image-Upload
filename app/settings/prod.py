@@ -30,6 +30,8 @@ SECRET_KEY = str(os.getenv('DJANGO_SECRET_KEY'))
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +44,8 @@ INSTALLED_APPS = [
     'upload',
     'storages',
     'easy_thumbnails',
-    'material'
+    'material',
+    'django-crontrab'
 ]
 
 MIDDLEWARE = [
@@ -146,3 +149,6 @@ PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 MEDIA_ROOT = MEDIA_URL
 DEFAULT_FILE_STORAGE = 'app.storage_backends.S3MediaStorage'
+
+
+DEBUG = False
