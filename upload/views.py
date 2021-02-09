@@ -92,3 +92,5 @@ def check_session(request):
     # create session if it doesn't already exist
     if not request.session.session_key:
         request.session.create()
+        # set session to expire in 24 hrs
+        request.session.set_expiry(86400)
