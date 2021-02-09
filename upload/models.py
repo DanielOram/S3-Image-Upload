@@ -40,3 +40,4 @@ def delete_file(sender, instance, *args, **kwargs):
     if instance.file:
         _delete_thumbnails(instance.file)
         _delete_file(instance.file.path)
+
