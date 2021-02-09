@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'upload',
     'storages',
     'easy_thumbnails',
-    'material',
-    'django-crontrab'
+    'material'
 ]
 
 MIDDLEWARE = [
@@ -152,3 +151,4 @@ DEFAULT_FILE_STORAGE = 'app.storage_backends.S3MediaStorage'
 
 
 DEBUG = False
+
