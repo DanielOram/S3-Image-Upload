@@ -55,13 +55,10 @@ def index(request, view="list-view"):
             s3_upload_path = Upload.objects.get(file=filename).file.url
             messages.success(request, "Successfully uploaded file!")
             return redirect(index, view=view)
-            # return HttpResponse("Image successfully uploaded to bucket at location: {}".format(s3_upload_path))
     else:
         form = UploadForm(initial={'session_key': session_key})
 
     images = Upload.objects.all()
-
-    test_models = TestCeleryModel.objects.all()
 
     if view =='card-view':
         template = 'upload/card_view_index.html'
@@ -73,8 +70,7 @@ def index(request, view="list-view"):
         template,
         {
             'images': images,
-            'form': form,
-            'test_models': test_models
+            'form': form
         }
         )
     
