@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UploadForm
-from .models import Upload, TestCeleryModel
+from .models import Upload
 
 from django.contrib import messages
 

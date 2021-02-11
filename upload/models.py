@@ -41,8 +41,3 @@ def delete_file(sender, instance, *args, **kwargs):
         _delete_thumbnails(instance.file)
         _delete_file(instance.file.path)
 
-class TestCeleryModel(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return "TestCeleryModel: {}".format(self.name)
