@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'upload',
     'storages',
     'easy_thumbnails',
-    'material'
+    'material',
+    'celery'
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,10 @@ DEFAULT_FILE_STORAGE = 'app.storage_backends.S3MediaStorage'
 
 DEBUG = False
 
+# CELERY CONFIGURATION
+BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
