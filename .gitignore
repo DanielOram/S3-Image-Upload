@@ -132,3 +132,4 @@ dmypy.json
 media
 
 upload/migrations
+celerybeat-*
