@@ -12,7 +12,9 @@ services:
       - ./.env.prod
     depends_on: 
       - db
-
+      - redis
+  redis:
+    image: "redis:alpine"
   db:
     image: postgres:12.0-alpine
     volumes:
@@ -21,5 +23,21 @@ services:
       - POSTGRES_USER=s3_upload
       - POSTGRES_PASSWORD=s3_upload
       - POSTGRES_DB=s3_upload_dev
+  celery:
+    build: ./
+    command: celery -A app worker -l info
+    volumes:
+      - ./:/usr/src/app/
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build: ./
+    command: celery -A app beat -l info
+    volumes:
+      - ./:/usr/src/app/
+    depends_on:
+      - db
+      - redis
 volumes: 
   postgres_data:
