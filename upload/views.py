@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UploadForm
-from .models import Upload
+from .models import Upload, TestCeleryModel
 
 from django.contrib import messages
 
@@ -61,6 +61,7 @@ def index(request, view="list-view"):
 
     images = Upload.objects.all()
 
+    test_models = TestCeleryModel.objects.all()
 
     if view =='card-view':
         template = 'upload/card_view_index.html'
@@ -72,7 +73,8 @@ def index(request, view="list-view"):
         template,
         {
             'images': images,
-            'form': form
+            'form': form,
+            'test_models': test_models
         }
         )
     
