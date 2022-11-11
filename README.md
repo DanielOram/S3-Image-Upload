@@ -8,3 +8,7 @@
  - db: Container running a postgres server to handle all db queries.
  - celery: Container running the celery worker process
  - celery-beat: Container running the celery beat process for scheduled tasks
+
+
+
+To run this application, install `Docker` and `docker-compose`. Then run `docker compose up` inside the root directory. Open `http://localhost:1337/` to see the running app.
